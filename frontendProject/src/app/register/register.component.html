@@ -1,0 +1,68 @@
+<div class="jumbotron">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <h2>Register</h2>
+                <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+                    <div class="form-group">
+                        <label>Username</label>
+                        <input type="text" formControlName="username" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
+                        <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+                            <div *ngIf="f.username.errors.required">Username is required</div>
+                            <div *ngIf="f.username.errors.minlength">Username must be at least 3 characters</div>
+                        </div>
+                    </div>
+                      <div class="form-group">
+                          <label>Password</label>
+                          <input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+                          <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                              <div *ngIf="f.password.errors.required">Password is required</div>
+                              <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
+                          </div>
+                      </div>
+                    <div class="form-group">
+                        <label>First Name</label>
+                        <input type="text" formControlName="firstName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" />
+                        <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
+                            <div *ngIf="f.firstName.errors.required">First Name is required</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Last Name</label>
+                        <input type="text" formControlName="lastName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" />
+                        <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
+                            <div *ngIf="f.lastName.errors.required">Last Name is required</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="text" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+                        <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                            <div *ngIf="f.email.errors.required">Email is required</div>
+                            <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>CNP</label>
+                        <input type="number" formControlName="cnp" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.cnp.errors }" />
+                        <div *ngIf="submitted && f.cnp.errors" class="invalid-feedback">
+                            <div *ngIf="f.cnp.errors.required">CNP is required</div>
+                            <div *ngIf="f.cnp.errors.minlength">CNP must be from 10 digits</div>
+                            <div *ngIf="f.cnp.errors.maxlength">CNP must be from 10 digits</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Salary</label>
+                        <input type="number" formControlName="salary" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.salary.errors }" />
+                        <div *ngIf="submitted && f.salary.errors" class="invalid-feedback">
+                            <div *ngIf="f.salary.errors.required">Salary is required</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button [disabled]="loading" class="btn btn-primary">Register</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+  </div>
