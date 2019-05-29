@@ -1,0 +1,31 @@
+// Variable overrides
+$navbar-bg: #3a4149;
+$breadcrumb-bg:#3a4149; 
+$body-bg:#2f353a;
+
+$navbar-border: (
+  bottom: (
+    size:                             1px,
+    style:                            solid,
+    color:                            #23282c
+  )
+);
+
+$breadcrumb-borders: (
+  bottom: (
+    size:                             1px,
+    style:                            solid,
+    color:                            #23282c
+  )
+);
+
+$sidebar-borders: (
+  right: (
+    size:                             1px,
+    style:                            solid,
+    color:                            #23282c
+  )
+);
+
+$navbar-toggler-icon-hover: url('../assets/images/barsWhite.png');
+$navbar-toggler-icon: url('../assets/images/barsGrey.png');
