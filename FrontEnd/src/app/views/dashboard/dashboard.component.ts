@@ -10,9 +10,13 @@ import { CustomTooltips } from '@coreui/coreui-plugin-chartjs-custom-tooltips';
   //providers:[AppService,ApiUrlBuilder]
 })
 export class DashboardComponent implements OnInit {
-  constructor(){}
+  constructor(private router:Router){}
 
-  ngOnInit(): void { 
+  ngOnInit(): void {
+    let user= JSON.parse(localStorage.getItem("currentUser"));
+    if(!user){
+      this.router.navigate(['']);
+    } 
   }
 
 }

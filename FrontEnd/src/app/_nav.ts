@@ -36,6 +36,21 @@ export const navItems: NavData[] = [
     icon: 'icon-speedometer',
 
   },
+  {
+    name: 'Medicines',
+    url: '/medicines',
+    icon: 'medicine.png'
+  },
+  {
+    name: 'Prescriptions',
+    url: '/prescriptions',
+    icon: 'someIcon'
+  },
+  {
+    name: 'Companies',
+    url: '/companies',
+    icon:'anotherIcon'
+  }
   // {
   //   title: true,
   //   name: 'Theme'

@@ -48,9 +48,13 @@ export class RegisterComponent implements OnInit {
 
     this.registerService.register(username,password,firstName,lastName,email,cnp,salary).subscribe(user=>{
       if(user!=null){
-        var empl = new Observable<Employee>();
-        empl=this.registerService.login(username,password);
-        this.router.navigate(['/dashboard']);
+        // var empl = new Observable<Employee>();
+        this.registerService.login(username,password).subscribe(empl=>{
+          if(empl!=null){
+            this.router.navigate(['/dashboard']);
+          }
+        });
+        //this.router.navigate(['/dashboard']);
       }
     })
   

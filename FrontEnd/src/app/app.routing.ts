@@ -9,6 +9,9 @@ import { P404Component } from './views/error/404.component';
 import { LoginPageComponent } from './views/login-page/login-page.component';
 import { DashboardComponent } from './views/dashboard/dashboard.component';
 import { LoginComponent } from './views/login/login.component';
+import { MedicineComponent } from './views/medicine/medicine.component';
+import { CompanyComponent } from './views/company/company.component';
+import { PrescriptionComponent } from './views/prescription/prescription.component';
 
 export const routes: Routes = [
   {
@@ -31,16 +34,37 @@ export const routes: Routes = [
     }
   },
   {
+    path: 'medicines',
+    component: MedicineComponent,
+    data:{
+      title: 'Medicines'
+    }
+  },
+  {
+    path: 'companies',
+    component: CompanyComponent,
+    data:{
+      title: 'Companies'
+    }
+  },
+  {
+    path: 'prescriptions',
+    component: PrescriptionComponent,
+    data:{
+      title: 'Prescriptions'
+    }
+  },
+  {
     path: '',
     component: DefaultLayoutComponent,
     data: {
-      title: 'Home'
+      title: ''
     },
     children: [
       {
         path: 'dashboard',
         loadChildren: './views/dashboard/dashboard.module#DashboardModule'
-      }
+      },
     ]
   },
   { path: '**', component: P404Component }

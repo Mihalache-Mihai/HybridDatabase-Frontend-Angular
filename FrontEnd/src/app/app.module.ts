@@ -50,6 +50,9 @@ import { JwtInterceptor } from './shared/helpers/jwt.interceptor';
 import { ErrorInterceptor } from './shared/helpers/error.interceptor';
 import {MatTabsModule} from '@angular/material/tabs';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MedicineComponent } from './views/medicine/medicine.component';
+import { CompanyComponent } from './views/company/company.component';
+import { PrescriptionComponent } from './views/prescription/prescription.component';
 
 @NgModule({
   imports: [
@@ -78,7 +81,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     P500Component,
     LoginComponent,
     LoginPageComponent,
-    RegisterComponent
+    RegisterComponent,
+    MedicineComponent,
+    CompanyComponent,
+    PrescriptionComponent
   ],
   providers: [AuthenticationService, HttpClient, 
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
