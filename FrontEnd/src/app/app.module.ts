@@ -8,7 +8,7 @@ import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 
 //import {MatTabsModule} from '@angular/material/tabs';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -50,13 +50,19 @@ import { JwtInterceptor } from './shared/helpers/jwt.interceptor';
 import { ErrorInterceptor } from './shared/helpers/error.interceptor';
 import {MatTabsModule} from '@angular/material/tabs';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MedicineComponent } from './views/medicine/medicine.component';
 import { CompanyComponent } from './views/company/company.component';
 import { PrescriptionComponent } from './views/prescription/prescription.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material';
+import { MedicineModule } from './views/medicine/medicine.module';
+import { MedicineComponent } from './views/medicine/medicine.component';
 
 @NgModule({
   imports: [
-    MatTabsModule,  
+    MatTabsModule, 
+    MatFormFieldModule, 
+    FormsModule,
+    MatInputModule,
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
@@ -71,7 +77,7 @@ import { PrescriptionComponent } from './views/prescription/prescription.compone
     ChartsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
 
   ],
   declarations: [
@@ -82,9 +88,9 @@ import { PrescriptionComponent } from './views/prescription/prescription.compone
     LoginComponent,
     LoginPageComponent,
     RegisterComponent,
-    MedicineComponent,
     CompanyComponent,
-    PrescriptionComponent
+    PrescriptionComponent,
+    MedicineComponent,
   ],
   providers: [AuthenticationService, HttpClient, 
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

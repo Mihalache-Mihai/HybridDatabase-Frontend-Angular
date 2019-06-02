@@ -39,17 +39,17 @@ export const navItems: NavData[] = [
   {
     name: 'Medicines',
     url: '/medicines',
-    icon: 'medicine.png'
+    icon: 'icon-plus'
   },
   {
     name: 'Prescriptions',
-    url: '/prescriptions',
-    icon: 'someIcon'
+    //url: '/prescriptions',
+    icon: 'icon-docs  '
   },
   {
     name: 'Companies',
-    url: '/companies',
-    icon:'anotherIcon'
+   // url: '/companies',
+    icon:'icon-globe'
   }
   // {
   //   title: true,

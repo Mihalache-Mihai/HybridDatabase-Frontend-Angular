@@ -65,6 +65,13 @@ export const routes: Routes = [
         path: 'dashboard',
         loadChildren: './views/dashboard/dashboard.module#DashboardModule'
       },
+      // {
+      //   path: 'medicines',
+      //   loadChildren: './views/medicine/medicine.module#MedicineModule',
+      //   data: {
+      //     title: 'Medicines'
+      //   }
+      // },
     ]
   },
   { path: '**', component: P404Component }
