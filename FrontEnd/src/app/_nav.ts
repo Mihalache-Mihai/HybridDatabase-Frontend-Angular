@@ -43,12 +43,12 @@ export const navItems: NavData[] = [
   },
   {
     name: 'Prescriptions',
-    //url: '/prescriptions',
+    url: '/prescriptions',
     icon: 'icon-docs  '
   },
   {
     name: 'Companies',
-   // url: '/companies',
+    url: '/companies',
     icon:'icon-globe'
   }
   // {

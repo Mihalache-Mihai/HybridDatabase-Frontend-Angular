@@ -35,21 +35,21 @@ export const routes: Routes = [
   },
   {
     path: 'medicines',
-    component: MedicineComponent,
+    component: DefaultLayoutComponent,
     data:{
       title: 'Medicines'
     }
   },
   {
     path: 'companies',
-    component: CompanyComponent,
+    component: DefaultLayoutComponent,
     data:{
       title: 'Companies'
     }
   },
   {
     path: 'prescriptions',
-    component: PrescriptionComponent,
+    component: DefaultLayoutComponent,
     data:{
       title: 'Prescriptions'
     }

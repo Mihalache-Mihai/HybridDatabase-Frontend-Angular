@@ -1,6 +1,7 @@
-import { Component, OnDestroy, Inject } from '@angular/core';
+import { Component, OnDestroy, Inject, ElementRef, ViewChild } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { navItems } from '../../_nav';
+import * as $ from 'jquery';
 
 
 @Component({
@@ -9,10 +10,12 @@ import { navItems } from '../../_nav';
   templateUrl: './default-layout.component.html'
 })
 export class DefaultLayoutComponent implements OnDestroy {
+  @ViewChild('app-sidebar-nav') navBar: ElementRef; 
   public navItems = navItems;
   public sidebarMinimized = true;
   private changes: MutationObserver;
   public element: HTMLElement;
+  public selected: string = "haloo";
   constructor(@Inject(DOCUMENT) _document?: any) {
 
     this.changes = new MutationObserver((mutations) => {
@@ -26,6 +29,22 @@ export class DefaultLayoutComponent implements OnDestroy {
   }
 
   ngOnInit() {
+    // console.log(this.navBar);
+    setTimeout(() => {
+      this.selected = $(".breadcrumb-item.active span")[0].innerHTML;
+      console.log(this.selected);
+    },0);
+    console.log(this.selected);
+    // this.selected = $(".breadcrumb-item.active span")[0].innerHTML;
+
+    // this.selected = $(".breadcrumb-item.active.ng-star-inserted .ng-star-inserted")[0].innerHTML;
+    // console.log(this.selected);
+  }
+
+  ngOnChange() {
+    // console.log(this.navBar);
+    // this.selected = $(".breadcrumb-item.active.ng-star-inserted .ng-star-inserted")[0].innerHTML;
+    // console.log(this.selected);
   }
 
   ngOnDestroy(): void {
