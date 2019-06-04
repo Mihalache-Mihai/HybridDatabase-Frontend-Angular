@@ -1,10 +1,30 @@
 <!-- <app-dashboard></app-dashboard> -->
 <form class="example-form">
-    <mat-form-field class="example-full-width">
-      <input matInput placeholder="Favorite food" value="Sushi">
-    </mat-form-field>
+  <div id="main"><div id="firstInput">    
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Medicine" class="inputMedicine" value="Medicine :)  ">
+      </mat-form-field>
+    </div>
   
-    <mat-form-field class="example-full-width">
-      <textarea matInput placeholder="Leave a comment"></textarea>
-    </mat-form-field>
+    
+      <!-- <mat-form-field class="example-full-width">
+        <textarea matInput placeholder="Leave a comment"></textarea>
+      </mat-form-field> -->
+      <div id="secondInput">
+        <mat-form-field class="example-full-width">
+          <!-- <input matInput placeholder="Medicine Mongo" class="right" value=" Mongo :) "> -->
+          <input [formControl]="searchMedicine" type="text" class="right" (keyup)="onKeyUp()" (keydown)="onKeyDown()"  matInput [matAutocomplete]="auto" matInput placeholder="Medicines Mongo" >
+          <mat-autocomplete #auto="matAutocomplete">
+            <mat-option (click)="onMedicineClick(medicine.name,artist.id)" *ngFor="let medicine of medicines" [value]="medicine">
+              {{medicine.name}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+       </div>
+      
+      </div>
+  
+       
+  
+  
   </form>

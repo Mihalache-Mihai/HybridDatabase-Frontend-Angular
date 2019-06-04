@@ -35,16 +35,11 @@ export class DefaultLayoutComponent implements OnDestroy {
       console.log(this.selected);
     },0);
     console.log(this.selected);
-    // this.selected = $(".breadcrumb-item.active span")[0].innerHTML;
 
-    // this.selected = $(".breadcrumb-item.active.ng-star-inserted .ng-star-inserted")[0].innerHTML;
-    // console.log(this.selected);
   }
 
   ngOnChange() {
-    // console.log(this.navBar);
-    // this.selected = $(".breadcrumb-item.active.ng-star-inserted .ng-star-inserted")[0].innerHTML;
-    // console.log(this.selected);
+
   }
 
   ngOnDestroy(): void {
