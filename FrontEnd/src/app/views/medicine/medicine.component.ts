@@ -13,6 +13,7 @@ import { AuthenticationService } from '../../shared/service/authentication.servi
 export class MedicineComponent implements OnInit {
   public navItems=navItems;
   public medicines: any[]=[];
+  public medicinesMongo: any[]=[];
   private searchHandler:any;
   private searchDelay: number = 500;
   public searchMedicine: FormControl = new FormControl();
@@ -41,6 +42,21 @@ export class MedicineComponent implements OnInit {
       this.service.getMedicines(value).subscribe(medicines => {
         if(medicines)
           this.medicines = medicines;
+          //console.log(medicines);
+
+      });
+    }
+  }
+
+  getMedicinesMongo(value:string){
+
+    this.medicines = [];
+    
+    if(value && value.trim().length > 0)
+    {
+      this.service.getMedicinesMongo(value).subscribe(medicines => {
+        if(medicines)
+          this.medicinesMongo = medicines;
           console.log(medicines);
 
       });

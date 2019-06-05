@@ -85,4 +85,14 @@ export class AuthenticationService {
             }))
     }
 
+    getMedicinesMongo(value:string){
+        return this.http.get<any>(ApiUrl.serverUrl+ApiUrl.medicineMongoUrl+value)
+            .pipe(map(response=>{
+                if(response){
+                    return response;
+                }
+                return null;
+            }))
+    }
+
 }
