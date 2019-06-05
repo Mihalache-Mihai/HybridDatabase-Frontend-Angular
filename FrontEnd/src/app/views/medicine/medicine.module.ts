@@ -8,6 +8,7 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { ButtonsModule } from 'ngx-bootstrap/buttons';
 import { DashboardRoutingModule } from '../dashboard/dashboard-routing.module';
 import { DefaultLayoutComponent } from '../../containers/default-layout';
+import { AddUpdateDialogComponent } from '../add-update-dialog/add-update-dialog.component';
 
 @NgModule({
   declarations: [MedicineComponent],
@@ -19,6 +20,7 @@ import { DefaultLayoutComponent } from '../../containers/default-layout';
     ChartsModule,
     BsDropdownModule,
     ButtonsModule.forRoot()
-  ]
+  ],
+ 
 })
 export class MedicineModule { }

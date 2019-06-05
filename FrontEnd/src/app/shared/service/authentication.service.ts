@@ -75,24 +75,6 @@ export class AuthenticationService {
         localStorage.removeItem('currentUser');
     }
 
-    getMedicines(value:string){
-        return this.http.get<any>(ApiUrl.serverUrl+ApiUrl.medicineUrl+value)
-            .pipe(map(response=>{
-                if(response){
-                    return response;
-                }
-                return null;
-            }))
-    }
 
-    getMedicinesMongo(value:string){
-        return this.http.get<any>(ApiUrl.serverUrl+ApiUrl.medicineMongoUrl+value)
-            .pipe(map(response=>{
-                if(response){
-                    return response;
-                }
-                return null;
-            }))
-    }
 
 }

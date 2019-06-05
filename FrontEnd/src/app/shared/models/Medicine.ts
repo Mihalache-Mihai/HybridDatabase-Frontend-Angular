@@ -2,6 +2,6 @@ import { Company } from './Company';
 
 export class Medicine {
     name?:string;
-    prospect?: Map<string,string>;
+    stock?:number;
     company?: Company;
 }

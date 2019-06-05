@@ -53,9 +53,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CompanyComponent } from './views/company/company.component';
 import { PrescriptionComponent } from './views/prescription/prescription.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import {MatInputModule, MatAutocomplete, MatAutocompleteModule} from '@angular/material';
+import {MatInputModule, MatAutocomplete, MatAutocompleteModule, MatDialog, MatDialogModule,MatSelectModule} from '@angular/material';
 import { MedicineModule } from './views/medicine/medicine.module';
 import { MedicineComponent } from './views/medicine/medicine.component';
+import { AddUpdateDialogComponent } from './views/add-update-dialog/add-update-dialog.component';
+import { BackendService } from './shared/service/backend.service';
+
 
 @NgModule({
   imports: [
@@ -79,6 +82,8 @@ import { MedicineComponent } from './views/medicine/medicine.component';
     ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    MatDialogModule,
+    MatSelectModule
 
   ],
   declarations: [
@@ -92,8 +97,11 @@ import { MedicineComponent } from './views/medicine/medicine.component';
     CompanyComponent,
     PrescriptionComponent,
     MedicineComponent,
+    AddUpdateDialogComponent,
+
   ],
-  providers: [AuthenticationService, HttpClient, 
+  entryComponents:[AddUpdateDialogComponent],
+  providers: [AuthenticationService, HttpClient,  BackendService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     { provide: LocationStrategy, useClass: HashLocationStrategy }

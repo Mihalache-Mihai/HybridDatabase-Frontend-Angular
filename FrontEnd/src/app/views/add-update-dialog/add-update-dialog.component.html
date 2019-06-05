@@ -1,0 +1,33 @@
+<h1 mat-dialog-title>Add a new medicine</h1>
+<div class="example-container">
+    <mat-form-field >
+      <textarea matInput placeholder="Name" id="medicineName" [formControl]="name"></textarea>
+    </mat-form-field>
+  </div>
+  <!-- <div class="example-container">
+    <mat-form-field>
+      <textarea matInput placeholder="Prospect" id="medicineProspect" [formControl]="prospect"></textarea>
+    </mat-form-field>
+  </div> -->
+
+  <div class="example-container">
+      <mat-form-field>
+          <!-- <input matInput placeholder="Stock" [formControl]="emailFormControl"
+          [errorStateMatcher]="matcher"> -->
+          <textarea matInput placeholder="Stock" id="medicineStock" [formControl]="stock"></textarea>
+      </mat-form-field>
+    </div>
+
+  
+  <div class="example-container">
+          <mat-form-field>
+              <mat-label>Companies</mat-label>
+              <mat-select  [(value)]="companyName">
+                <mat-option *ngFor="let company of companies" [value]="company.companyName">
+                  {{company.companyName}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+  </div>
+
+  <button [disabled]="loading" class="btn btn-primary" (click)="addMedicine()">Add</button>

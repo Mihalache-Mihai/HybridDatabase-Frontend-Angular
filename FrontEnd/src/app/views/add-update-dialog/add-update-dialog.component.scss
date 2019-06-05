@@ -1,0 +1,11 @@
+.example-container {
+    position: relative;
+    display: flex;
+    flex-direction: row !important;
+    width:350px;
+  }
+  
+  .example-container > * {
+    width: 350px;
+  }
+ 
