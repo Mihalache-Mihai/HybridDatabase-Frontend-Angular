@@ -9,9 +9,9 @@ import { componentFactoryName } from '@angular/compiler';
 import { Medicine } from '../../shared/models/Medicine';
 import { Company } from '../../shared/models/Company';
 
-export interface DialogData{
-  medicineName:string, medicineStock:number, medicineCompany:Company
-}
+// export interface DialogData{
+//   medicineName:string, medicineStock:number, medicineCompany:Company
+// }
 
 @Component({
   selector: 'app-medicine',
@@ -26,40 +26,53 @@ export class MedicineComponent implements OnInit {
   private searchHandler:any;
   private searchDelay: number = 500;
   public searchMedicine: FormControl = new FormControl();
+  public searchMedicineMongo: FormControl = new FormControl();
 
-  private medicineName:string="";
-  private medicineStock:number=0;
+  private medicineName:string;
+  private medicineStock:number;
   private medicineCompany:Company=new Company();
+  private medicineID:number;
   constructor(private service:BackendService,public dialog: MatDialog) {
    
    }
 
    openDialog() {
-    const dialogConfig = new MatDialogConfig();
-
-    
-    dialogConfig.disableClose = true;
-    dialogConfig.autoFocus = true;
-    //console.log(medicine,"AAAAAAa");
-    
-      dialogConfig.data = {
+     const dialogRef = this.dialog.open(AddUpdateDialogComponent,{
+       width: '800px',
+      data : {
+        medicineID: this.medicineID,
         medicineName: this.medicineName,
         medicineStock: this.medicineStock,
-        medicineCompany: this.medicineCompany
-      };
-      //   console.log(dialogConfig);
-  
+        medicineCompany: this.medicineCompany,
+        
+      }
+     });
+    
+}
 
-    this.dialog.open(AddUpdateDialogComponent, dialogConfig);
+openDialogWithAdd() {
+  const dialogRef = this.dialog.open(AddUpdateDialogComponent,{
+    width: '800px',
+   data : {
+   }
+  });
+ 
 }
 
   ngOnInit() {
   }
 
-  @HostListener('window:keyup.esc')
-  onKeyUp(){
+  
+   onKeyUp(){
     clearTimeout(this.searchHandler);
     this.searchHandler = setTimeout(() => {this.getMedicines(this.searchMedicine.value)}, this.searchDelay);
+    this.dialog.closeAll();
+  }
+
+
+  onKeyUpMongo(){
+    clearTimeout(this.searchHandler);
+    this.searchHandler = setTimeout(() => {this.getMedicinesMongo(this.searchMedicineMongo.value)}, this.searchDelay);
     this.dialog.closeAll();
   }
 
@@ -73,10 +86,10 @@ export class MedicineComponent implements OnInit {
     
     if(value && value.trim().length > 0)
     {
-      this.service.getMedicines(value).subscribe(medicines => {
+      this.service.getMedicines(value).subscribe((medicines) => {
         if(medicines)
           this.medicines = medicines;
-          //console.log(medicines);
+          console.log(medicines);
 
       });
     }
@@ -84,11 +97,11 @@ export class MedicineComponent implements OnInit {
 
   getMedicinesMongo(value:string){
 
-    this.medicines = [];
+    this.medicinesMongo = [];
     
     if(value && value.trim().length > 0)
     {
-      this.service.getMedicinesMongo(value).subscribe(medicines => {
+      this.service.getMedicinesMongo(value).subscribe((medicines) => {
         if(medicines)
           this.medicinesMongo = medicines;
           console.log(medicines);
@@ -98,16 +111,17 @@ export class MedicineComponent implements OnInit {
   }
 
   onMedicineClick(medicineID:number){
-    var medicine = new Medicine();
-    this.service.getMedicineByID(medicineID).subscribe(result=>{
+    this.service.getMedicineByID(medicineID).subscribe((result)=>{
       if(result){
+        this.medicineID=medicineID;
         this.medicineName=result.name;
         this.medicineStock=result.stock;
        this.medicineCompany=result.company;
+       this.openDialog();
       }
       
     });
-    this.openDialog();
+    
     this.searchMedicine.reset();
     if(medicineID){
       console.log(medicineID);

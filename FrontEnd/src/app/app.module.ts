@@ -53,7 +53,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CompanyComponent } from './views/company/company.component';
 import { PrescriptionComponent } from './views/prescription/prescription.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import {MatInputModule, MatAutocomplete, MatAutocompleteModule, MatDialog, MatDialogModule,MatSelectModule} from '@angular/material';
+import {MatInputModule, MatAutocomplete, MatAutocompleteModule, MatDialog, MatDialogModule,MatSelectModule, MAT_DIALOG_DEFAULT_OPTIONS} from '@angular/material';
 import { MedicineModule } from './views/medicine/medicine.module';
 import { MedicineComponent } from './views/medicine/medicine.component';
 import { AddUpdateDialogComponent } from './views/add-update-dialog/add-update-dialog.component';
@@ -104,6 +104,7 @@ import { BackendService } from './shared/service/backend.service';
   providers: [AuthenticationService, HttpClient,  BackendService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}},
     { provide: LocationStrategy, useClass: HashLocationStrategy }
   ],
   bootstrap: [ AppComponent ]

@@ -1,56 +1,69 @@
-import { Component, OnInit, Inject, HostListener } from '@angular/core';
-import { MatDialog, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
-import { DialogData } from '../medicine/medicine.component';
+import { Component, OnInit, Inject, HostListener, ViewChild } from '@angular/core';
+import { MatDialog, MAT_DIALOG_DATA, MatDialogRef, MatButton } from '@angular/material';
+//import { DialogData } from '../medicine/medicine.component';
 import * as $ from 'jquery';
 import { FormControl } from '@angular/forms';
 import { AuthenticationService } from '../../shared/service/authentication.service';
 import { BackendService } from '../../shared/service/backend.service';
 
 @Component({
-  selector: 'app-add-update-dialog',
+  selector: 'add-update-dialog',
   templateUrl: 'add-update-dialog.component.html',
+  
 })
 
 export class AddUpdateDialogComponent {
+  //@ViewChild('removeButton') deleteButton: any;
+
   public name:FormControl=new FormControl();
   private companies: any[]=[];
   private companyName:string = "";
   private stock:FormControl = new FormControl();
   private searchHandler:any;
+  private buttonName: string="Add"
+  private buttonDeleteName: string="Delete";
   private searchDelay: number = 500;
-  constructor(private service: BackendService ,
-              private dialogRef: MatDialogRef<AddUpdateDialogComponent>, @Inject(MAT_DIALOG_DATA) data) {
-
-                console.log(data);
-                console.log("AAAAAAAAAAAAAAAAaa");
-                if(data){
-                if(data.medicineName)
-                this.name.setValue(data.medicineName);
-                if(data.medicineStock)
-                  this.stock.setValue(data.medicineStock);
-                if(data.medicineCompany)
-                  this.companyName=data.medicineCompany.companyName;
-             }
-
-
+  private medicineID:number;
+  constructor(public dialogRef: MatDialogRef<AddUpdateDialogComponent>,private service: BackendService , @Inject(MAT_DIALOG_DATA) public data:any) {
  }
                                      
   ngOnInit(){
-    
-    
+
+
+    if(this.data){
+      if(this.data.medicineName){
+        this.name.setValue(this.data.medicineName);
+        this.buttonName="Update";
+      }
+      else{
+        this.buttonName="Add";
+      }
+     
+      if(this.data.medicineStock)
+        this.stock.setValue(this.data.medicineStock);
+      if(this.data.medicineCompany)
+        this.companyName=this.data.medicineCompany.companyName;
+      if(this.data.medicineID)
+        this.medicineID=this.data.medicineID;
+   }
+    if(this.buttonName=="Add"){
+      $("#deleteButton").hide();
+    }
+    else{
+      $("#deleteButton").show();
+    }
+    console.log("data: ", this.data);
     this.getCompanies();
   }
 
+  ngOnChange(){
+
+  }
+
   addMedicine(){
-    console.log(this.name.value);
+    //this.deleteButton
     let name = this.name.value;
-    //let prospect = this.prospect.value;
-
     let stock = +this.stock.value;
-    console.log(stock);
-
-    //let company = this.company.value;
-    console.log(this.companyName);
 
     this.service.addMedicine(name,stock,this.companyName).subscribe(medicine => {
       if(medicine){
@@ -58,6 +71,39 @@ export class AddUpdateDialogComponent {
       }
     })
     
+    this.closeDialog();
+
+  }
+
+  deleteMedicine(){
+    this.service.deleteMedicine(this.medicineID).subscribe(medicine=>{
+      if(medicine){
+        console.log(medicine);
+      }
+    })
+    this.closeDialog();
+  }
+
+  addOrUpdate(){
+    console.log("Add or update function")
+    if(this.buttonName=="Add")
+      this.addMedicine();
+    else
+      this.updateMedicine();
+  }
+
+  updateMedicine(){
+    console.log("Update");  
+    let name = this.name.value;
+    let stock = +this.stock.value;
+
+    this.service.updateMedicine(this.medicineID,name,stock,this.companyName).subscribe(medicine => {
+      if(medicine){
+        console.log(medicine);
+      }
+    })
+    
+    this.closeDialog();
   }
 
   onKeyUp(){
@@ -70,21 +116,20 @@ export class AddUpdateDialogComponent {
     clearTimeout(this.searchHandler);
   }
 
+  
+  closeDialog() {
+    this.dialogRef.close();
+  }
+
   getCompanies(){
     this.companies = [];
     
-    // if(value && value.trim().length > 0)
-    // {
       this.service.getCompanies().subscribe(companies => {
         if(companies)
           this.companies = companies;
-          //console.log(medicines);
           console.log(this.companies);
 
       });
     }
- // }
-  // onCompanyClick(name:string){
-  //   this.company.setValue(name);
-  // }
+
 }

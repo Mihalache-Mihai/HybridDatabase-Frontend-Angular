@@ -57,7 +57,6 @@ addMedicine(name:string, stock:number, companyName:string){
   company.companyName=companyName;
   const bodyDict = {
     'name': name,
-    //'prospect': prospect,
     'company':company,
     'stock':stock,
 }
@@ -69,4 +68,34 @@ addMedicine(name:string, stock:number, companyName:string){
           }
       }))
 }
+
+updateMedicine(id:number,name:string, stock:number, companyName:string){
+  var company=new Company();
+  company.companyName=companyName;
+  const bodyDict = {
+    'name': name,
+    'company':company,
+    'stock':stock,
+}
+  return this.http.put<any>(ApiUrl.serverUrl+ ApiUrl.medicineUrl+id, JSON.stringify(bodyDict))
+      .pipe(map(response=>{
+          if(response){
+            console.log(response);
+            return response;
+          }
+          return null;
+      }))
+}
+
+deleteMedicine(id:number){
+  return this.http.delete<any>(ApiUrl.serverUrl+ApiUrl.medicineUrl+id)
+      .pipe(map(response=>{
+        if(response){
+          console.log(response);
+          return response;
+        }
+        return null;
+      }))
+}
+
 }
