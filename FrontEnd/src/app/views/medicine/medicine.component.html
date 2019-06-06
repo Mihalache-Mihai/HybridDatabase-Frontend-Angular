@@ -21,7 +21,7 @@
           <!-- <input matInput placeholder="Medicine Mongo" class="right" value=" Mongo :) "> -->
           <input [formControl]="searchMedicineMongo" type="text" class="right" (keyup)="onKeyUpMongo()" (keydown)="onKeyDown()"  matInput [matAutocomplete]="autoMongo" placeholder="Mongo"  >
           <mat-autocomplete #autoMongo="matAutocomplete">
-            <mat-option (click)="onMedicineClick(medicine.id)" *ngFor="let m of medicinesMongo" [value]="m">
+            <mat-option (click)="onMedicineMongoClick(m.id)" *ngFor="let m of medicinesMongo" [value]="m">
               {{m.name | titlecase}}
             </mat-option>
           </mat-autocomplete>

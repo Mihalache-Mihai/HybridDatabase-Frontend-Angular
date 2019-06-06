@@ -129,4 +129,24 @@ openDialogWithAdd() {
     
   }
 
+  onMedicineMongoClick(mID:number){
+    console.log("on medicine click")
+    this.service.getMedicineMongoByID(mID).subscribe((result)=>{
+      if(result){
+        this.medicineID=mID;
+        this.medicineName=result.name;
+        this.medicineStock=result.stock;
+       this.medicineCompany=result.company;
+       this.openDialog();
+      }
+      
+    });
+    
+    this.searchMedicineMongo.reset();
+    if(mID){
+      console.log(mID);
+    }
+    
+  }
+
 }

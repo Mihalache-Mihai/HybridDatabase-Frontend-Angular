@@ -52,6 +52,17 @@ getMedicineByID(medicineID:number){
         }))
 }
 
+getMedicineMongoByID(medicineID:number){
+  return this.http.get<any>(ApiUrl.serverUrl+ApiUrl.medicineMongoUrl+"byID/"+medicineID.toString())
+        .pipe(map(response=>{
+          if(response){
+            console.log(response);
+            return response;
+          }
+          return null;
+        }))
+}
+
 addMedicine(name:string, stock:number, companyName:string){
   var company=new Company();
   company.companyName=companyName;

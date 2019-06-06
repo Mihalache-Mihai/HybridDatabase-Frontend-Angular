@@ -41,8 +41,14 @@ export class AddUpdateDialogComponent {
      
       if(this.data.medicineStock)
         this.stock.setValue(this.data.medicineStock);
-      if(this.data.medicineCompany)
+      if(this.data.medicineCompany){
+          if(this.data.medicineCompany.companyName)
         this.companyName=this.data.medicineCompany.companyName;
+          else
+            this.companyName=this.data.medicineCompany;
+      }
+       
+
       if(this.data.medicineID)
         this.medicineID=this.data.medicineID;
    }
