@@ -58,7 +58,7 @@ export class AddUpdateDialogComponent {
     else{
       $("#deleteButton").show();
     }
-    console.log("data: ", this.data);
+    console.log("data: ", this.companyName);
     this.getCompanies();
   }
 

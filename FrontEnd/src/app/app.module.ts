@@ -58,6 +58,8 @@ import { MedicineModule } from './views/medicine/medicine.module';
 import { MedicineComponent } from './views/medicine/medicine.component';
 import { AddUpdateDialogComponent } from './views/add-update-dialog/add-update-dialog.component';
 import { BackendService } from './shared/service/backend.service';
+import { AddUpdatePrescriptionDialogComponent } from './views/add-update-prescription-dialog/add-update-prescription-dialog.component';
+import { AddUpdateCompanyDialogComponent } from './views/add-update-company-dialog/add-update-company-dialog.component';
 
 
 @NgModule({
@@ -98,9 +100,11 @@ import { BackendService } from './shared/service/backend.service';
     PrescriptionComponent,
     MedicineComponent,
     AddUpdateDialogComponent,
+    AddUpdatePrescriptionDialogComponent,
+    AddUpdateCompanyDialogComponent,
 
   ],
-  entryComponents:[AddUpdateDialogComponent],
+  entryComponents:[AddUpdateDialogComponent,AddUpdatePrescriptionDialogComponent,AddUpdateCompanyDialogComponent],
   providers: [AuthenticationService, HttpClient,  BackendService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },

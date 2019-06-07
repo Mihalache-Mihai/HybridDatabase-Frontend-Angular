@@ -1,1 +1,17 @@
-<p> works  prescriptions </p>
+<form class="example-form">
+    <div id="main">
+      <div id="firstInput">    
+        <mat-form-field class="example-full-width">
+            <input [formControl]="searchPrescription" type="text" class="right" (keyup)="onKeyUp()" (keydown)="onKeyDown()"  matInput [matAutocomplete]="auto" placeholder="Prescription"  >
+            <mat-autocomplete #auto="matAutocomplete">
+              <mat-option (click)="onPrescriptionClick(prescription.prescriptionSeries)" *ngFor="let prescription of prescriptions" [value]="prescription">
+                {{prescription.name | titlecase}}
+              </mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+      </div>
+
+      <div id = "addPrescription">
+        <button mat-button (click)="openDialogWithAdd()" >Add Prescription</button>
+    </div>
+    

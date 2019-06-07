@@ -1,1 +1,17 @@
-<p> works  company</p>
+<form class="example-form">
+    <div id="main">
+      <div id="firstInput">    
+        <mat-form-field class="example-full-width">
+            <input [formControl]="searchCompany" type="text" class="right" (keyup)="onKeyUp()" (keydown)="onKeyDown()"  matInput [matAutocomplete]="auto" placeholder="Normal"  >
+            <mat-autocomplete #auto="matAutocomplete">
+              <mat-option (click)="onCompanyClick(company.id)" *ngFor="let company of companies" [value]="company">
+                {{company.companyName | titlecase}}
+              </mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+      </div>
+
+      <div id = "addCompany">
+        <button mat-button (click)="openDialogWithAdd()" >Add Company</button>
+        <i class="fas fa-plus-square" (click)="openDialog()"id="addButton" ></i>
+    </div>

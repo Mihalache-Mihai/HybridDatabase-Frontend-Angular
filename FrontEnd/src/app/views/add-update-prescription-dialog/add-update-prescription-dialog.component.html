@@ -1,0 +1,55 @@
+<h1 mat-dialog-title>Add a new prescription</h1>
+<div mat-dialog-content>
+<div class="example-container">
+    <mat-form-field >
+      <textarea matInput placeholder="Series" id="prescriptionSeries" [formControl]="series"></textarea>
+    </mat-form-field>
+  </div>
+
+  <div class="example-container">
+      <mat-form-field>
+          <textarea matInput placeholder="Locality" id="prescriptionLocality" [formControl]="locality"></textarea>
+      </mat-form-field>
+    </div>
+
+    <div class="example-container">
+      <mat-form-field>
+          <textarea matInput placeholder="County" id="prescriptionCounty" [formControl]="county"></textarea>
+      </mat-form-field>
+    </div>
+
+    <div class="example-container">
+      <mat-form-field>
+          <textarea matInput placeholder="CNP" id="prescriptionCNP" [formControl]="cnp"></textarea>
+      </mat-form-field>
+    </div>
+
+
+    <div class="example-container">
+      <mat-form-field>
+          <textarea matInput placeholder="Name" id="prescriptionName" [formControl]="name"></textarea>
+      </mat-form-field>
+    </div>
+
+    <div class="example-container">
+      <mat-form-field>
+          <textarea matInput placeholder="Residence" id="prescriptionReidence" [formControl]="residence"></textarea>
+      </mat-form-field>
+    </div>
+
+    <div class="example-container">
+      <mat-form-field>
+          <textarea matInput placeholder="Diagnosis" id="prescriptionDiagnosis" [formControl]="diagnosis"></textarea>
+      </mat-form-field>
+    </div>
+
+    <div class="example-container">
+      <mat-form-field>
+          <textarea matInput placeholder="Medicines" id="prescriptionMedicines" [formControl]="medicines"></textarea>
+      </mat-form-field>
+    </div>
+  
+  
+  <button mat-button [disabled]="loading" class="btn btn-primary" (click)="addOrUpdate()" id="addButton" >{{buttonName}}</button>
+  <button mat-button [disabled]="loading" class="btn btn-primary" (click)="deletePrescription()" id="deleteButton" >{{buttonDeleteName}}</button>
+</div>
