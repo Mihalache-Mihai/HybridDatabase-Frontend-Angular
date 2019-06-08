@@ -6,3 +6,20 @@
 
 // If you want to add something do it here
 @import "custom";
+
+body {
+    overflow: hidden;
+}
+
+::-webkit-scrollbar {
+    background-color: #ffffff;
+    width: 14px;
+    border-bottom-right-radius: 20px;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: #3a4149;
+    border-right: solid 2.5px #ffffff;
+    border-left: solid 2.5px #ffffff;
+}

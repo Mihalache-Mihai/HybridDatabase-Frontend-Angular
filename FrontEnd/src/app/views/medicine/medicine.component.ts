@@ -8,6 +8,8 @@ import { BackendService } from '../../shared/service/backend.service';
 import { componentFactoryName } from '@angular/compiler';
 import { Medicine } from '../../shared/models/Medicine';
 import { Company } from '../../shared/models/Company';
+import {TweenMax, Expo, Back, Power2, TimelineLite} from "gsap/TweenMax";
+import * as $ from 'jquery';
 
 // export interface DialogData{
 //   medicineName:string, medicineStock:number, medicineCompany:Company
@@ -60,6 +62,11 @@ openDialogWithAdd() {
 }
 
   ngOnInit() {
+    $(".button-fill").hover(function () {
+      $(this).children(".button-inside").addClass('full');
+    }, function() {
+    $(this).children(".button-inside").removeClass('full');
+  });
   }
 
   

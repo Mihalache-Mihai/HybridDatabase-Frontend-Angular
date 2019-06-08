@@ -1,39 +1,39 @@
 <!-- <app-dashboard></app-dashboard> -->
-<form class="example-form">
-  <div id="main">
-    <div id="firstInput">    
-      <mat-form-field class="example-full-width">
-          <input [formControl]="searchMedicine" type="text" class="right" (keyup)="onKeyUp()" (keydown)="onKeyDown()"  matInput [matAutocomplete]="auto" placeholder="Normal"  >
-          <mat-autocomplete #auto="matAutocomplete">
-            <mat-option (click)="onMedicineClick(medicine.id)" *ngFor="let medicine of medicines" [value]="medicine">
-              {{medicine.name | titlecase}}
-            </mat-option>
-          </mat-autocomplete>
-      </mat-form-field>
-    </div>
-  
-    
-      <!-- <mat-form-field class="example-full-width">
-        <textarea matInput placeholder="Leave a comment"></textarea>
-      </mat-form-field> -->
-      <div id="secondInput">
-        <mat-form-field class="example-full-width">
-          <!-- <input matInput placeholder="Medicine Mongo" class="right" value=" Mongo :) "> -->
-          <input [formControl]="searchMedicineMongo" type="text" class="right" (keyup)="onKeyUpMongo()" (keydown)="onKeyDown()"  matInput [matAutocomplete]="autoMongo" placeholder="Mongo"  >
-          <mat-autocomplete #autoMongo="matAutocomplete">
-            <mat-option (click)="onMedicineMongoClick(m.id)" *ngFor="let m of medicinesMongo" [value]="m">
-              {{m.name | titlecase}}
-            </mat-option>
-          </mat-autocomplete>
-        </mat-form-field>
-       </div>
-      
-      </div>
-  <div id = "addMedicineDiv">
-      <button mat-button (click)="openDialogWithAdd()" >Add Medicine</button>
-      <i class="fas fa-plus-square" (click)="openDialog()"id="addButton" ></i>
+
+<div id="main">
+  <div id="firstInput" class="column-container">
+    <div class="panelTitle">Relational</div>
+    <mat-form-field class="example-full-width" shouldLabelFloat="false">
+      <input [formControl]="searchMedicine" type="text" class="right" (keyup)="onKeyUp()" (keydown)="onKeyDown()"
+        matInput [matAutocomplete]="auto" placeholder="Normal">
+      <mat-autocomplete #auto="matAutocomplete">
+        <mat-option (click)="onMedicineClick(medicine.id)" *ngFor="let medicine of medicines" [value]="medicine">
+          {{medicine.name | titlecase}}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
   </div>
-       
-  
-  
-  </form>
+
+  <div id="separator"></div>
+  <div id="secondInput" class="column-container">
+    <div class="panelTitle">Non-Relational</div>
+    <mat-form-field class="example-full-width">
+      <input [formControl]="searchMedicineMongo" type="text" class="right" (keyup)="onKeyUpMongo()"
+        (keydown)="onKeyDown()" matInput [matAutocomplete]="autoMongo" placeholder="Mongo">
+      <mat-autocomplete #autoMongo="matAutocomplete">
+        <mat-option (click)="onMedicineMongoClick(m.id)" *ngFor="let m of medicinesMongo" [value]="m">
+          {{m.name | titlecase}}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+  </div>
+
+</div>
+  <!-- <div class="button" (click)="openDialogWithAdd()">Add Medicine</div>
+  <i class="fas fa-plus-square" (click)="openDialog()" id="addButton"></i> -->
+    <div id="addMedicineBtn" class="button-fill grey" (click)="openDialogWithAdd()">
+      <div class="button-text">Add Medicine</div>
+      <div class="button-inside">
+        <div class="inside-text">Add&nbsp;Medicine</div>
+      </div>
+    </div>

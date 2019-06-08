@@ -9,6 +9,7 @@ import { ButtonsModule } from 'ngx-bootstrap/buttons';
 import { DashboardRoutingModule } from '../dashboard/dashboard-routing.module';
 import { DefaultLayoutComponent } from '../../containers/default-layout';
 import { AddUpdateDialogComponent } from '../add-update-dialog/add-update-dialog.component';
+import * as $ from 'jquery';
 
 @NgModule({
   declarations: [MedicineComponent],

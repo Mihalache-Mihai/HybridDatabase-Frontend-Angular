@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor, HTTP_INTERCEPTORS, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Type } from '@angular/compiler';
 
@@ -15,9 +15,15 @@ export class JwtInterceptor implements HttpInterceptor {
             request = request.clone({
                 setHeaders: { 
                     Authorization: `Bearer ${currentUser.Token}`,
-                    'Content-Type': 'application/json'
+                    'Accept':  'application/json',
+                    //Content: application/json,
                 }
-            });
+                // headers: new HttpHeaders({
+                //     'Content-Type':  'application/json',
+                //     'Authorization': 'Bearer ${currentUser.Token}'
+                //   })
+            });      
+        //request.headers.set('Content-Type', 'application/json');
         }
 
         return next.handle(request);

@@ -60,7 +60,7 @@ import { AddUpdateDialogComponent } from './views/add-update-dialog/add-update-d
 import { BackendService } from './shared/service/backend.service';
 import { AddUpdatePrescriptionDialogComponent } from './views/add-update-prescription-dialog/add-update-prescription-dialog.component';
 import { AddUpdateCompanyDialogComponent } from './views/add-update-company-dialog/add-update-company-dialog.component';
-
+import * as $ from 'jquery';
 
 @NgModule({
   imports: [
