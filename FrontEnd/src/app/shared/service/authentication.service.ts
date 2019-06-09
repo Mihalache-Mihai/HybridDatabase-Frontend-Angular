@@ -36,8 +36,8 @@ export class AuthenticationService {
                     user.Token=token;
                     user.Username=decodedToken.sub;
                     localStorage.setItem('currentUser', JSON.stringify(user));
-                    console.log("Login was successful: ", JSON.stringify(user));
-                    console.log(token);
+                   // console.log("Login was successful: ", JSON.stringify(user));
+                    //console.log(token);
                     return user;
                 }
             
@@ -45,7 +45,7 @@ export class AuthenticationService {
             }));
     }
 
-    register(username: string, password: string, firstName: string, lastName: string, email: string, cnp: string, salary: string):Observable<Employee>{
+    register(username: string, password: string, firstName: string, lastName: string, email: string, cnp: string, salary: string):any{
         var credentials= new Credentials();
         credentials.username=username;
         credentials.password=password;
@@ -57,18 +57,50 @@ export class AuthenticationService {
             'cnp':cnp,
             'salary':salary,
         }
-        return this.http.post<any>(ApiUrl.serverUrl+ApiUrl.signUp,JSON.stringify(body))
-            .pipe(map(response=>{
-                console.log(response);
-                if(response){
-                    var user = new Employee();
-                    user.Username=response.Username;
-                    //this.login(username,password);
-                    return user;
-                }
-                return null;
-            }));
-            
+        console.log(body);
+        // return this.http.post<Employee>(ApiUrl.serverUrl+ApiUrl.signUp,JSON.stringify(body))
+        //     .pipe(map(response=>{
+        //         console.log(response);
+        //         if(response){
+        //             var user = new Employee();
+        //             user.Username=response.Username;
+        //             //this.login(username,password);
+        //             return user;
+        //         }
+        //         return null;
+        //     }));
+        var user=new Employee();
+      
+
+            return new Promise((resolve, reject) => {
+                fetch(ApiUrl.serverUrl+ApiUrl.signUp,
+                    {
+                        method: 'POST', // *GET, POST, PUT, DELETE, etc.
+                        headers: {
+                            'Content-Type': 'application/json',
+                        }, body: JSON.stringify(body)
+                    })
+                    .then(response=> {
+                        console.log("response is: ",response)
+                        return response.json();
+                    })
+                    .then(response=> { 
+                           
+                            user.Username=response.Username;
+                            //this.login(username,password);         
+                            resolve(user);
+        
+                    }).catch(error=>{
+                        console.log(error);
+                    });
+                    
+
+            });
+        
+
+
+        
+        
     }
 
     logout() {

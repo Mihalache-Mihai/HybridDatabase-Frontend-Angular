@@ -3,6 +3,7 @@ import { FormControl } from '@angular/forms';
 import { BackendService } from '../../shared/service/backend.service';
 import { MatDialog } from '@angular/material';
 import { AddUpdatePrescriptionDialogComponent } from '../add-update-prescription-dialog/add-update-prescription-dialog.component';
+import * as $ from 'jquery';
 
 @Component({
   selector: 'app-prescription',
@@ -29,6 +30,11 @@ export class PrescriptionComponent implements OnInit {
   constructor(private service:BackendService,public dialog: MatDialog ) { }
 
   ngOnInit() {
+    $(".button-fill").hover(function () {
+      $(this).children(".button-inside").addClass('full');
+    }, function() {
+    $(this).children(".button-inside").removeClass('full');
+  });
 
   }
 
