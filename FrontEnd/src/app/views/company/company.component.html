@@ -1,4 +1,4 @@
-<form class="example-form">
+<!-- <form class="example-form"> -->
     <div id="main">
       <div id="firstInput">    
         <mat-form-field class="example-full-width">
@@ -10,8 +10,11 @@
             </mat-autocomplete>
         </mat-form-field>
       </div>
-
-      <div id = "addCompany">
-        <button mat-button (click)="openDialogWithAdd()" >Add Company</button>
-        <i class="fas fa-plus-square" (click)="openDialog()"id="addButton" ></i>
     </div>
+    <div id="addCompanyBtn" class="button-fill grey" (click)="openDialogWithAdd()">
+      <div class="button-text">Add&nbsp;Company</div>
+      <div class="button-inside">
+        <div class="inside-text">Add&nbsp;Company</div>
+      </div>
+    </div>
+    

@@ -249,5 +249,49 @@ getCompanyByID(companyID:number){
         }))
 }
 
+//queries
 
+  executeCompanyQuery(){
+    return this.http.get<any>(ApiUrl.serverUrl+ApiUrl.medicineUrl+"findAllBy/"+ApiUrl.CUI.toString())
+        .pipe(map(response=>{
+          if(response){
+            console.log(response);
+            return response;
+          }
+          return null;
+        }))
+  }
+
+  executeEmployeeQuery(){
+    return this.http.get<any>(ApiUrl.serverUrl+ApiUrl.employeeUrl+"findBy/"+ApiUrl.username.toString())
+    .pipe(map(response=>{
+      if(response){
+        console.log(response);
+        return response;
+      }
+      return null;
+    }))
+  }
+
+  executeMedicineMongoQuery(){
+    return this.http.get<any>(ApiUrl.serverUrl+ApiUrl.medicineMongoUrl+ApiUrl.medicineMongoName+ApiUrl.medicineMongoStock.toString())
+        .pipe(map(response=>{
+          if(response){
+            console.log(response);
+            return response;
+          }
+          return null;
+        }))
+  }
+
+  executePrescriptionQuery(){
+    return this.http.get<any>(ApiUrl.serverUrl+ApiUrl.prescriptionUrl+ApiUrl.prescriptionName+ApiUrl.prescriptionCounty.toString())
+        .pipe(map(response=>{
+          if(response){
+            console.log(response);
+            return response;
+          }
+          return null;
+        }))
+  }
 }

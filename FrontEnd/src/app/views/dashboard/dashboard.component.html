@@ -1,5 +1,40 @@
-<div class="animated fadeIn">
-  <div class="row">
-      
+<div id="main">
+  <div id="firstInput" class="column-container">
+    <div class="panelTitle">Relational</div>
   </div>
+
+  <div id="separator"></div>
+  <div id="secondInput" class="column-container">
+    <div class="panelTitle">Non-Relational</div>
+  </div>
+
 </div>
+
+    <div id="executeQuery1" class="button-fill grey" (click)="executeCompanyQuery()">
+        <div class= queryRight> SELECT * FROM Company c INNER JOIN Medicine m ON c.id = m.company_id where c.CUI = '12234123' Order By m.name </div>
+      <div class="button-text">Execute Query</div>
+      <div class="button-inside">
+        <div class="inside-text">Execute&nbsp;Query</div>
+      </div>
+    </div>
+    <div id="executeQuery2" class="button-fill grey" (click)="executeEmployeeQuery()">
+        <div class= queryRight> SELECT * FROM Employee e INNER JOIN Credentials c ON e.employeeID=c.employeeID</div>
+      <div class="button-text">Execute Query</div>
+      <div class="button-inside">
+        <div class="inside-text">Execute&nbsp;Query</div>
+      </div>
+    </div>
+   <div id="executeQuery3" class="button-fill grey" (click)="executeMedicineMongoQuery()">
+      <div class= queryRight> SELECT * FROM MedicineMongo WHERE Name = "name" and Stock = "stock"</div>
+      <div class="button-text">Execute Query</div>
+      <div class="button-inside">
+        <div class="inside-text">Execute&nbsp;Query</div>
+      </div>
+    </div>
+    <div id="executeQuery4" class="button-fill grey" (click)="executePrescriptionQuery()">
+        <div class= queryRight>SELECT * FROM Prescription WHERE Name = "name" and County = "county"</div>
+      <div class="button-text">Execute Query</div>
+      <div class="button-inside">
+        <div class="inside-text">Execute&nbsp;Query</div>
+      </div>
+    </div> 

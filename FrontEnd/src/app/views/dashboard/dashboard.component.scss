@@ -1,0 +1,59 @@
+@import "../medicine/medicine.component.scss";
+
+#query1{
+  position: absolute;
+  margin-top: -70px;
+  color:white;
+}
+
+.queryRight{
+  position: absolute;
+  margin-top: -125px;
+  color:white;
+  width: 400px;
+  font-size: 20px;
+  margin-left: -84px;
+  font-weight: 600;
+  
+}
+
+#executeQuery1{
+    cursor: pointer;
+    position: absolute;
+    bottom: 51%;
+    left: 26.5%;
+    width: 215px;
+    height: 80px;
+    border-radius: 10px;
+  }
+
+  #executeQuery2{
+    cursor: pointer;
+    position: absolute;
+    bottom: 18%;
+    left: 26.5%;
+    width: 215px;
+    height: 80px;
+    border-radius: 10px;
+  }
+
+  #executeQuery3{
+    cursor: pointer;
+    position: absolute;
+    bottom: 18%;
+    left: 70%;
+    width: 215px;
+    height: 80px;
+    border-radius: 10px;
+  }
+
+  
+  #executeQuery4{
+    cursor: pointer;
+    position: absolute;
+    bottom: 51%;
+    left: 70%;
+    width: 215px;
+    height: 80px;
+    border-radius: 10px;
+  }
