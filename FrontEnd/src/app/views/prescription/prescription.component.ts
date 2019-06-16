@@ -95,6 +95,7 @@ export class PrescriptionComponent implements OnInit {
     }
 
     onPrescriptionClick(prescriptionSeries:string){
+      $("#prescriptionSearch").val("");
       this.service.getPrescriptionBySeries(prescriptionSeries).subscribe((result)=>{
         if(result){
           this.prescriptionSeries=result.prescriptionSeries,

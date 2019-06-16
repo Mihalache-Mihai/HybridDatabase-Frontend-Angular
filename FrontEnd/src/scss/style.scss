@@ -23,3 +23,13 @@ body {
     border-right: solid 2.5px #ffffff;
     border-left: solid 2.5px #ffffff;
 }
+
+.app-header
+{
+    z-index: -1 !important;
+}
+
+.mat-snack-bar-container
+{
+  margin-left: 228px !important;
+}

@@ -1,13 +1,14 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, ViewEncapsulation } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA, MatSnackBar } from '@angular/material';
 import { BackendService } from '../../shared/service/backend.service';
 import * as $ from 'jquery';
 
 @Component({
   selector: 'app-add-update-company-dialog',
   templateUrl: './add-update-company-dialog.component.html',
-  styleUrls: ['./add-update-company-dialog.component.scss']
+  styleUrls: ['./add-update-company-dialog.component.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class AddUpdateCompanyDialogComponent implements OnInit {
 
@@ -17,7 +18,7 @@ export class AddUpdateCompanyDialogComponent implements OnInit {
   private buttonName:string="Add";
   private buttonDeleteName:string="Delete";
 
-  constructor(public dialogRef: MatDialogRef<AddUpdateCompanyDialogComponent>,private service: BackendService , @Inject(MAT_DIALOG_DATA) public data:any) { }
+  constructor(public dialogRef: MatDialogRef<AddUpdateCompanyDialogComponent>, private snackBar: MatSnackBar, private service: BackendService , @Inject(MAT_DIALOG_DATA) public data:any) { }
 
   ngOnInit() {
     console.log("company dialog",this.data.cui);
@@ -46,6 +47,10 @@ export class AddUpdateCompanyDialogComponent implements OnInit {
 
   }
 
+  openSnackBar(message: string) {
+    this.snackBar.open(message, '', {verticalPosition: "top", duration: 6000});
+  }
+
   addCompany(){
 
     let name = this.name.value;
@@ -56,6 +61,7 @@ export class AddUpdateCompanyDialogComponent implements OnInit {
     this.service.addCompany(cui,name).subscribe(company => {
       if(company){
         console.log(company);
+        this.openSnackBar("Insert time is: "+ company.responseTime);
       }
     })
     
@@ -68,6 +74,7 @@ export class AddUpdateCompanyDialogComponent implements OnInit {
     this.service.deleteCompany(this.companyID).subscribe(company=>{
       if(company){
         console.log(company);
+        this.openSnackBar("Delete time is: "+ company.responseTime);
       }
     })
     this.closeDialog();
@@ -90,6 +97,7 @@ export class AddUpdateCompanyDialogComponent implements OnInit {
     this.service.updateCompany(this.companyID,cui,name).subscribe(company => {
       if(company){
         console.log(company);
+        this.openSnackBar("Update time is: "+ company.responseTime);
       }
     })
     

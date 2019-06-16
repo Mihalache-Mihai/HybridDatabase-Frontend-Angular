@@ -9,3 +9,25 @@
     width: 350px;
   }
  
+
+  .mat-dialog-container
+{
+  border-radius: 100px !important;
+}
+
+.mat-dialog-content
+{
+    position: absolute;
+    height: 215px;
+    .btn 
+    {
+        width: 103px;
+        height: 52px;
+    }
+}
+
+#deleteButton
+{
+    position: absolute;
+    right: 26px;
+}

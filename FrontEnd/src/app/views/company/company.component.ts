@@ -35,6 +35,10 @@ export class CompanyComponent implements OnInit {
   openDialog() {
     const dialogRef = this.dialog.open(AddUpdateCompanyDialogComponent,{
       width: '800px',
+      position:{
+        top:"15%",
+        left:"34%"
+      },
      data : {
        companyID: this.companyID,
        companyCUI: this.companyCUI,

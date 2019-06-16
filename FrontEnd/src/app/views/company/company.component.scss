@@ -32,3 +32,14 @@
     -ms-transform: translateX(50%);
     transform: translateX(50%);
   }
+
+  .mat-dialog-container
+  {
+    border-radius: 10px;
+  }
+
+  .example-full-width
+  {
+    margin-top: 200px;
+    min-width: 500px;
+  }

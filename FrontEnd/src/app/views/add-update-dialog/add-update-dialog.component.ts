@@ -1,5 +1,5 @@
-import { Component, OnInit, Inject, HostListener, ViewChild } from '@angular/core';
-import { MatDialog, MAT_DIALOG_DATA, MatDialogRef, MatButton } from '@angular/material';
+import { Component, OnInit, Inject, HostListener, ViewChild, ViewEncapsulation } from '@angular/core';
+import { MatDialog, MAT_DIALOG_DATA, MatDialogRef, MatButton, MatSnackBar } from '@angular/material';
 //import { DialogData } from '../medicine/medicine.component';
 import * as $ from 'jquery';
 import { FormControl } from '@angular/forms';
@@ -9,7 +9,8 @@ import { BackendService } from '../../shared/service/backend.service';
 @Component({
   selector: 'add-update-dialog',
   templateUrl: 'add-update-dialog.component.html',
-  
+  encapsulation: ViewEncapsulation.None,
+
 })
 
 export class AddUpdateDialogComponent {
@@ -24,7 +25,7 @@ export class AddUpdateDialogComponent {
   private buttonDeleteName: string="Delete";
   private searchDelay: number = 500;
   private medicineID:number;
-  constructor(public dialogRef: MatDialogRef<AddUpdateDialogComponent>,private service: BackendService , @Inject(MAT_DIALOG_DATA) public data:any) {
+  constructor(public dialogRef: MatDialogRef<AddUpdateDialogComponent>, private snackBar: MatSnackBar, private service: BackendService , @Inject(MAT_DIALOG_DATA) public data:any) {
  }
                                      
   ngOnInit(){
@@ -66,6 +67,10 @@ export class AddUpdateDialogComponent {
 
   }
 
+  openSnackBar(message: string) {
+    this.snackBar.open(message, '', {verticalPosition: "top", duration: 6000});
+  }
+
   addMedicine(){
     //this.deleteButton
     let name = this.name.value;
@@ -74,6 +79,7 @@ export class AddUpdateDialogComponent {
     this.service.addMedicine(name,stock,this.companyName).subscribe(medicine => {
       if(medicine){
         console.log(medicine);
+        this.openSnackBar(medicine.responseTime);
       }
     })
     
@@ -85,6 +91,7 @@ export class AddUpdateDialogComponent {
     this.service.deleteMedicine(this.medicineID).subscribe(medicine=>{
       if(medicine){
         console.log(medicine);
+        this.openSnackBar(medicine.responseTime);
       }
     })
     this.closeDialog();
@@ -106,6 +113,7 @@ export class AddUpdateDialogComponent {
     this.service.updateMedicine(this.medicineID,name,stock,this.companyName).subscribe(medicine => {
       if(medicine){
         console.log(medicine);
+        this.openSnackBar(medicine.responseTime);
       }
     })
     

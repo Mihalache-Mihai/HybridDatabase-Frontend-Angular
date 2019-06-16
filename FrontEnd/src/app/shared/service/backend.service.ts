@@ -285,7 +285,8 @@ getCompanyByID(companyID:number){
   }
 
   executePrescriptionQuery(){
-    return this.http.get<any>(ApiUrl.serverUrl+ApiUrl.prescriptionUrl+ApiUrl.prescriptionName+ApiUrl.prescriptionCounty.toString())
+    //by name and stock
+    return this.http.get<any>(ApiUrl.serverUrl+ApiUrl.prescriptionUrl+ApiUrl.prescriptionName+ApiUrl.prescriptionCounty)
         .pipe(map(response=>{
           if(response){
             console.log(response);
@@ -293,5 +294,15 @@ getCompanyByID(companyID:number){
           }
           return null;
         }))
+
+    //only by county 
+        // return this.http.get<any>(ApiUrl.serverUrl+ApiUrl.prescriptionUrl+"byName/"+ApiUrl.prescriptionName.toString())
+        // .pipe(map(response=>{
+        //   if(response){
+        //     console.log(response);
+        //     return response;
+        //   }
+        //   return null;
+        // }))
   }
 }

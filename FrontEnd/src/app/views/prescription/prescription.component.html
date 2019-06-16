@@ -2,8 +2,8 @@
     <div id="main">
       <div id="firstInput">    
         <mat-form-field class="example-full-width">
-            <input [formControl]="searchPrescription" type="text" class="right" (keyup)="onKeyUp()" (keydown)="onKeyDown()"  matInput [matAutocomplete]="auto" placeholder="Prescription"  >
-            <mat-autocomplete #auto="matAutocomplete">
+            <input id="prescriptionSearch" class="searchbar" [formControl]="searchPrescription" type="text" class="right" (keyup)="onKeyUp()" (keydown)="onKeyDown()"  matInput [matAutocomplete]="auto" placeholder="Prescription"  >
+            <mat-autocomplete class="autocomplete" #auto="matAutocomplete">
               <mat-option (click)="onPrescriptionClick(prescription.prescriptionSeries)" *ngFor="let prescription of prescriptions" [value]="prescription">
                 {{prescription.name | titlecase}}
               </mat-option>

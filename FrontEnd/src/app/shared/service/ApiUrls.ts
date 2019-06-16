@@ -8,14 +8,16 @@ export class ApiUrl{
     static readonly prescriptionUrl='/prescription/';
 
     //find by cui
-    static readonly CUI='12234123';
+    //static readonly CUI='12234123';
+    static readonly CUI='123456';
+
 
     //find by username
-    static readonly username='mihai3';
+    static readonly username='mihai';
 
     //find by name and stock
-    static readonly medicineMongoName='medicinetest/';
-    static readonly medicineMongoStock='1997';
+    static readonly medicineMongoName='mihaitest/';
+    static readonly medicineMongoStock='2019';
 
     //find by name and county
 
