@@ -24,5 +24,9 @@ export class ApiUrl{
     static readonly prescriptionName='mihai/';
     static readonly prescriptionCounty='brasov';
 
+    //insert
+    static readonly insert100k='insert100k';
+    static readonly insert7k = 'insert7k';
+
     static readonly serverUrl = 'http://localhost:8080';
 }

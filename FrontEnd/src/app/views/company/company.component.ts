@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { BackendService } from '../../shared/service/backend.service';
-import { MatDialog } from '@angular/material';
+import { MatDialog, MatSnackBar } from '@angular/material';
 import { FormControl } from '@angular/forms';
 import { AddUpdateCompanyDialogComponent } from '../add-update-company-dialog/add-update-company-dialog.component';
 import * as $ from 'jquery';
@@ -22,7 +22,7 @@ export class CompanyComponent implements OnInit {
   private companyCUI:string;
   private companyName:string;
 
-  constructor(private service:BackendService,public dialog: MatDialog) { }
+  constructor(private service:BackendService, private snackBar: MatSnackBar,public dialog: MatDialog) { }
 
   ngOnInit() {
     $(".button-fill").hover(function () {
@@ -50,6 +50,7 @@ export class CompanyComponent implements OnInit {
    
 }
 
+
 openDialogWithAdd() {
  const dialogRef = this.dialog.open(AddUpdateCompanyDialogComponent,{
    width: '800px',
@@ -57,6 +58,11 @@ openDialogWithAdd() {
   }
  });
 
+  }
+
+  
+  openSnackBar(message: string) {
+    this.snackBar.open(message, '', {verticalPosition: "top", duration: 6000});
   }
 
 
@@ -85,6 +91,15 @@ openDialogWithAdd() {
     }
   }
 
+  add7k(){
+  this.service.insert7k().subscribe(company=>{
+      if(company){
+        console.log(company);
+        this.openSnackBar(company.responseTime);
+      }
+  })
+  }
+  
 
   onCompanyClick(companyID:number){
     this.service.getCompanyByID(companyID).subscribe((result)=>{

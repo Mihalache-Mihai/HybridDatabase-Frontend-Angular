@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { BackendService } from '../../shared/service/backend.service';
-import { MatDialog } from '@angular/material';
+import { MatDialog, MatSnackBar } from '@angular/material';
 import { AddUpdatePrescriptionDialogComponent } from '../add-update-prescription-dialog/add-update-prescription-dialog.component';
 import * as $ from 'jquery';
 
@@ -27,7 +27,7 @@ export class PrescriptionComponent implements OnInit {
   private residence: string;
   private diagnosis: string;
   private medicines: string;
-  constructor(private service:BackendService,public dialog: MatDialog ) { }
+  constructor(private service:BackendService,public dialog: MatDialog,private snackBar: MatSnackBar ) { }
 
   ngOnInit() {
     $(".button-fill").hover(function () {
@@ -55,6 +55,9 @@ export class PrescriptionComponent implements OnInit {
      }
     });
   }
+  openSnackBar(message: string) {
+    this.snackBar.open(message, '', {verticalPosition: "top", duration: 6000});
+  }
 
   openDialogWithAdd() {
     console.log("prescription open dialog with add")
@@ -76,6 +79,14 @@ export class PrescriptionComponent implements OnInit {
       clearTimeout(this.searchHandler);
     }
 
+    add100kData(){
+      this.service.add100kPrescriptions().subscribe(result=>{
+        if(result){
+          console.log(result);
+          this.openSnackBar(result.responseTime);
+        }
+      })
+    }
 
     getPrescriptions(value:string){
 

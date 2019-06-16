@@ -305,4 +305,29 @@ getCompanyByID(companyID:number){
         //   return null;
         // }))
   }
+
+
+  add100kPrescriptions(){
+    return this.http.get<any>(ApiUrl.serverUrl+ApiUrl.prescriptionUrl+ApiUrl.insert100k)
+        .pipe(map(response=>{
+          if(response){
+            console.log(response);
+            return response;
+          }
+          return null;
+        }))
+
+  }
+
+  insert7k(){
+    return this.http.get<any>(ApiUrl.serverUrl+ApiUrl.companyUrl+ApiUrl.insert7k)
+        .pipe(map(response=>{
+          if(response){
+            console.log(response);
+            return response;
+          }
+          return null;
+        }))
+
+  }
 }

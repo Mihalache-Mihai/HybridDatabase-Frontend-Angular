@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA, MatSnackBar } from '@angular/material';
 import { BackendService } from '../../shared/service/backend.service';
 import * as $ from 'jquery';
 
@@ -28,7 +28,7 @@ export class AddUpdatePrescriptionDialogComponent implements OnInit {
   private buttonDeleteName: string="Delete";
   private searchDelay: number = 500;
 
-  constructor(public dialogRef: MatDialogRef<AddUpdatePrescriptionDialogComponent>,private service: BackendService , @Inject(MAT_DIALOG_DATA) public data:any) {
+  constructor(public dialogRef: MatDialogRef<AddUpdatePrescriptionDialogComponent>, private snackBar: MatSnackBar, private service: BackendService , @Inject(MAT_DIALOG_DATA) public data:any) {
  }
 
   ngOnInit() {
@@ -64,6 +64,10 @@ export class AddUpdatePrescriptionDialogComponent implements OnInit {
 
   }
 
+  openSnackBar(message: string) {
+    this.snackBar.open(message, '', {verticalPosition: "top", duration: 6000});
+  }
+
   addPrescription(){
 
     let series = this.series.value;
@@ -76,9 +80,10 @@ export class AddUpdatePrescriptionDialogComponent implements OnInit {
     let medicines = this.medicines.value;
 
 
-    this.service.addPrescription(series,locality,county,cnp,name,residence,diagnosis,medicines).subscribe(medicine => {
-      if(medicine){
-        console.log(medicine);
+    this.service.addPrescription(series,locality,county,cnp,name,residence,diagnosis,medicines).subscribe(prescription => {
+      if(prescription){
+        console.log(prescription);
+        this.openSnackBar(prescription.responseTime);
       }
     })
     
@@ -92,6 +97,7 @@ export class AddUpdatePrescriptionDialogComponent implements OnInit {
     this.service.deletePrescription(this.series.value).subscribe(prescription=>{
       if(prescription){
         console.log(prescription);
+        this.openSnackBar(prescription.responseTime);
       }
     })
     this.closeDialog();
@@ -120,6 +126,7 @@ export class AddUpdatePrescriptionDialogComponent implements OnInit {
     this.service.updatePrescription(series,locality,county,cnp,name,residence,diagnosis,medicines).subscribe(prescription => {
       if(prescription){
         console.log(prescription);
+        this.openSnackBar(prescription.responseTime);
       }
     })
     
