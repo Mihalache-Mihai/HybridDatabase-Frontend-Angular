@@ -113,10 +113,10 @@ deleteMedicine(id:number){
 addPrescription(series:string, locality:string, county:string,CNP:string, name:string, residence:string, diagnosis:string, medicines:string){
 
   const bodyDict = {
-    'series':series,
+    'prescriptionSeries':series,
     'locality': locality,
     'county':county,
-    'CNP':CNP,
+    'cnp':CNP,
     'name':name,
     'residence':residence,
     'diagnosis':diagnosis,
