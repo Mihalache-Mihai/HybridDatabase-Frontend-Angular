@@ -122,9 +122,6 @@ export class PrescriptionComponent implements OnInit {
         
       });
       
-      let a=2;
-     // this.searchPrescription.reset();
-
       
     }
   

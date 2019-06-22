@@ -29,6 +29,7 @@ export class DefaultLayoutComponent implements OnDestroy {
   }
 
   ngOnInit() {
+    $("a.navbar-brand").hide()
     // console.log(this.navBar);
     setTimeout(() => {
       this.selected = $(".breadcrumb-item.active span")[0].innerHTML;
