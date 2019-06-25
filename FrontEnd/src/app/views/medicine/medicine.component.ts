@@ -2,7 +2,7 @@ import { Component, OnInit, ViewEncapsulation, HostListener } from '@angular/cor
 import {MatInputModule} from '@angular/material/input';
 import { navItems } from '../../_nav';
 import { FormControl } from '@angular/forms';
-import { MatDialog, MatDialogConfig } from '@angular/material';
+import { MatDialog, MatDialogConfig, MatSnackBar } from '@angular/material';
 import { AddUpdateDialogComponent } from '../add-update-dialog/add-update-dialog.component';
 import { BackendService } from '../../shared/service/backend.service';
 import { componentFactoryName } from '@angular/compiler';
@@ -34,9 +34,16 @@ export class MedicineComponent implements OnInit {
   private medicineStock:number;
   private medicineCompany:Company=new Company();
   private medicineID:number;
-  constructor(private service:BackendService,public dialog: MatDialog) {
+  constructor(private service:BackendService,
+              public dialog: MatDialog,
+              private snackBar: MatSnackBar, ) {
    
    }
+
+   openSnackBar(message: string) {
+    this.snackBar.open(message, '', {verticalPosition: "top", duration: 6000});
+  }
+
 
    openDialog() {
      const dialogRef = this.dialog.open(AddUpdateDialogComponent,{
@@ -94,9 +101,12 @@ openDialogWithAdd() {
     if(value && value.trim().length > 0)
     {
       this.service.getMedicines(value).subscribe((medicines) => {
-        if(medicines)
+        if(medicines){
           this.medicines = medicines;
-          console.log(medicines);
+          this.openSnackBar(medicines[0].responseTime);
+        }
+          
+          //console.log(medicines);
 
       });
     }
@@ -109,9 +119,12 @@ openDialogWithAdd() {
     if(value && value.trim().length > 0)
     {
       this.service.getMedicinesMongo(value).subscribe((medicines) => {
-        if(medicines)
+        if(medicines){
           this.medicinesMongo = medicines;
-          console.log(medicines);
+          this.openSnackBar(medicines[0].responseTime);
+        }
+          
+         // console.log(medicines);
 
       });
     }
